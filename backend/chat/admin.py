@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import *
-
-
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'username', 'first_name', 'created_at']
+from django.contrib.auth.admin import UserAdmin
 
 
 class ChatAdmin(admin.ModelAdmin):
