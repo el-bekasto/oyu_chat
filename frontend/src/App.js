@@ -1,7 +1,10 @@
+import HomePage from "./components/HomePage";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div className="App">
-      <h1>H!</h1>
+      <HomePage/>
     </div>
   );
 }
