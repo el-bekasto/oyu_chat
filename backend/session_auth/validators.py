@@ -1,10 +1,9 @@
-from rest_framework import serializers
-
 from .serializers import *
-
-import json
 
 
 def validate_register(request_data):
-    validation = RegisterFormSerializer(data=request_data)
-    return validation.is_valid()
+    return RegisterFormSerializer(data=request_data).is_valid()
+
+
+def validate_login(request_data):
+    return LoginFormSerializer(data=request_data).is_valid()

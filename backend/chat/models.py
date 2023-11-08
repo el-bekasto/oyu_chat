@@ -10,6 +10,9 @@ class User(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'<chatUser {self.username}>'
+
 
 class Chat(models.Model):
     PRIVATE = 'private'
