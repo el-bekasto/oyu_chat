@@ -5,7 +5,7 @@ from rest_framework import status
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
-from chat.models import User
+from django.contrib.auth.models import AnonymousUser
 
 from . import validators
 
@@ -71,7 +71,7 @@ class CheckAuthenticatedView(APIView):
     permission_classes = (AllowAny, )
 
     def get(self, request):
-        if User.is_authenticated:
+        if type(request.user) != AnonymousUser:
             return Response({'ok': 'You are authenticated!'}, status=status.HTTP_200_OK)
         return Response({'ok': 'You are not authenticated!'}, status=status.HTTP_200_OK)
 
