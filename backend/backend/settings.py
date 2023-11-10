@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'chat.apps.ChatConfig',
     'api.apps.ApiConfig',
     'session_auth.apps.SessionAuthConfig',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
