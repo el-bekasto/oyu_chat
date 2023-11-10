@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'chat.apps.ChatConfig',
     'api.apps.ApiConfig',
+    'session_auth.apps.SessionAuthConfig',
     'corsheaders'
 ]
 
