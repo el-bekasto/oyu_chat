@@ -56,6 +56,7 @@ class LoginView(APIView):
             return Response({'error': 'Your login or password is incorrect!'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
+@method_decorator(csrf_protect, name='dispatch')
 class LogoutView(APIView):
     def post(self, request):
         try:
@@ -67,6 +68,8 @@ class LogoutView(APIView):
 
 @method_decorator(csrf_protect, name='dispatch')
 class CheckAuthenticatedView(APIView):
+    permission_classes = (AllowAny, )
+
     def get(self, request):
         if User.is_authenticated:
             return Response({'ok': 'You are authenticated!'}, status=status.HTTP_200_OK)
