@@ -5,6 +5,7 @@ import Layout from "./hocs/Layout";
 
 import ChatList from "./components/ChatList";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
               <Routes>
                   <Route path={"*"} element={ <ChatList/> }/>
                   <Route path={"/login"} element={ <Login/> }/>
+                  <Route path={'/register'} element={ <Register/> }/>
               </Routes>
           </Layout>
       </BrowserRouter>
