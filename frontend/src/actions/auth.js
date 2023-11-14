@@ -41,6 +41,7 @@ export const register = (username, password, re_password) => async dispatch => {
             'X-CSRFToken': Cookies.get('csrftoken')
         }
     };
+    console.log(config);
 
     const body = JSON.stringify({username, password, re_password});
 
