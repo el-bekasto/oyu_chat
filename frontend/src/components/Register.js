@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {register} from '../actions/auth';
 import {connect} from 'react-redux';
-import {redirect} from 'react-router-dom';
+import {Navigate} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -29,7 +29,7 @@ function Register({ register }) {
     }
 
     if (accountCreated) {
-        // return redirect('/');
+        return (<Navigate to={'/'}/>);
     }
 
     return (
