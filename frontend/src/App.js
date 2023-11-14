@@ -10,11 +10,13 @@ import Register from "./components/Register";
 function App() {
   return (
       <BrowserRouter>
+          <Layout>
               <Routes>
                   <Route path={"*"} element={ <ChatList/> }/>
                   <Route path={"/login"} element={ <Login/> }/>
                   <Route path={'/register'} element={ <Register/> }/>
               </Routes>
+          </Layout>
       </BrowserRouter>
   );
 }

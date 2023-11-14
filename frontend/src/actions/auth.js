@@ -60,6 +60,5 @@ export const register = (username, password, re_password) => async dispatch => {
         dispatch({
             type: REGISTER_FAIL
         });
-        console.log('what the fuck');
     }
 }
