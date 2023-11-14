@@ -25,7 +25,7 @@ function Register({ register }) {
         if (formData.password === formData.re_password) {
             register(formData.username, formData.password, formData.re_password);
             setAccountCreated(true);
-            console.log('acc created!')
+            console.log('acc created!');
         }
     }
 
