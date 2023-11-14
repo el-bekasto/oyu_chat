@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const CSRFToken = () => {
-    const [csrftoken, setcsrftoken] = useState('');
+    const [csrf, setCsrf] = useState('');
 
     const getCookie = (name) => {
         let cookieValue = null;
@@ -22,18 +22,18 @@ const CSRFToken = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                await axios.get(`${process.env.REACT_APP_API_URL}/accounts/csrf_cookie`);
+                await axios.get(`${process.env.REACT_APP_API_URL}/sessionAuth/csrfCookie/`);
             } catch (err) {
 
             }
         };
 
         fetchData();
-        setcsrftoken(getCookie('csrftoken'));
+        setCsrf(getCookie('csrftoken'));
     }, []);
 
     return (
-        <input type='hidden' name='csrfmiddlewaretoken' value={csrftoken} />
+        <input type='hidden' name='csrfmiddlewaretoken' value={csrf} />
     );
 };
 

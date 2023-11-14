@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import CSRFToken from "./CSRFToken";
 
 function Register({ register }) {
     const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ function Register({ register }) {
             <h1>Register</h1>
             <p>Create an account and join our wonderful chat app!</p>
             <Form onSubmit={e => onSubmit(e)}>
+                <CSRFToken/>
                 <Form.Group controlId={'formUsername'}>
                     <Form.Label>Username</Form.Label>
                     <Form.Control
