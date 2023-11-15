@@ -1,4 +1,11 @@
-import {LOGIN_FAIL, LOGIN_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS} from "../actions/types";
+import {
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    LOGOUT_FAIL,
+    LOGOUT_SUCCESS,
+    REGISTER_FAIL,
+    REGISTER_SUCCESS
+} from "../actions/types";
 
 const initialState = {
     isAuthenticated: null
@@ -6,6 +13,7 @@ const initialState = {
 
 export default function(state=initialState, action) {
     switch (action.type) {
+        case LOGOUT_SUCCESS:
         case REGISTER_SUCCESS:
             return {
                 ...state,
@@ -18,6 +26,7 @@ export default function(state=initialState, action) {
             }
         case REGISTER_FAIL:
         case LOGIN_FAIL:
+        case LOGOUT_FAIL:
         default:
             return state
     }
