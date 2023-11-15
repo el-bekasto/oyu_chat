@@ -73,7 +73,7 @@ class CheckAuthenticatedView(APIView):
     permission_classes = (AllowAny, )
 
     def get(self, request):
-        if type(request.user) != AnonymousUser:
+        if request.user.is_authenticated:
             return Response({'ok': 'You are authenticated!'}, status=status.HTTP_200_OK)
         return Response({'ok': 'You are not authenticated!'}, status=status.HTTP_200_OK)
 
