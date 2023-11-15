@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {register} from '../actions/auth';
+import {logout, register} from '../actions/auth';
 import {connect} from 'react-redux';
 import {Navigate} from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CSRFToken from "./CSRFToken";
 
-function Register({ register }) {
+function Register({ isAuthenticated, register }) {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -29,9 +29,8 @@ function Register({ register }) {
         }
     }
 
-    if (accountCreated) {
-        return (<Navigate to={'/'}/>);
-    }
+    if (isAuthenticated || accountCreated)
+        return (<Navigate to={'/'}/>)
 
     return (
         <Container>
@@ -86,4 +85,8 @@ function Register({ register }) {
     )
 }
 
-export default connect(null, { register })(Register);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { register })(Register);
