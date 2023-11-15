@@ -3,3 +3,9 @@ img {
     max-height: 50px;
 }
 
+.offcanvas a.logout {
+    color: red;
+}
+.offcanvas a.logout:hover {
+    color: crimson;
+}

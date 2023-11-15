@@ -5,8 +5,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Offcanvas from "react-bootstrap/Offcanvas";
 import '../styles/Navbar.css';
+import {connect} from "react-redux";
+import {logout} from "../actions/auth";
 
-export default function NavbarComponent () {
+function NavbarComponent ({logout}) {
     return (
         <Row>
             <Col lg={2}>
@@ -24,11 +26,16 @@ export default function NavbarComponent () {
                                         <Col lg={2}>
                                           <img src={'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg?20200418092106'}/>
                                         </Col>
+                                    </Row>
+                                    <Row>
                                         <Col>
                                             <span>Beknur Seydazim Torebekuly</span>
                                             <br></br>
                                             <span style={{fontSize: '10px'}}>+7 706 428 24 15</span>
                                         </Col>
+                                    </Row>
+                                    <Row>
+                                        <a className={'logout'} href={'#'} onClick={logout}>Log out</a>
                                     </Row>
                                 </Container>
                             </Offcanvas.Header>
@@ -48,3 +55,5 @@ export default function NavbarComponent () {
         </Row>
     )
 }
+
+export default connect(null, {logout})(NavbarComponent);
