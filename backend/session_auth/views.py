@@ -33,7 +33,6 @@ class SignupView(APIView):
         if len(password) < 8:
             return Response({'erorr': 'Minimum password size is 8 symbols!'}, status=status.HTTP_401_UNAUTHORIZED)
         user = User.objects.create_user(username=username, password=password)
-        user.save()
         return Response({'ok': 'User created successfully!'}, status=status.HTTP_201_CREATED)
 
 
