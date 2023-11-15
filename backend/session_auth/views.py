@@ -1,11 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.request import Request
 from rest_framework import status
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import AnonymousUser
+from chat.models import User
 
 from . import validators
 
@@ -14,7 +16,7 @@ from . import validators
 class SignupView(APIView):
     permission_classes = (AllowAny,)
 
-    def post(self, request):
+    def post(self, request: Request):
         data = self.request.data
 
         if not validators.validate_register(data):
