@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {logout, register} from '../actions/auth';
 import {connect} from 'react-redux';
-import {Navigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -30,7 +30,7 @@ function Register({ isAuthenticated, register }) {
     }
 
     if (isAuthenticated || accountCreated)
-        return (<Navigate to={'/'}/>)
+        return (<Navigate to={'/'}/>);
 
     return (
         <Container>
@@ -79,7 +79,7 @@ function Register({ isAuthenticated, register }) {
                 <Button className={'mt-3'} type={'submit'}>Register</Button>
             </Form>
             <p className={'mt-3'}>
-                Already have an account? <a href={'/login'}>Sign in</a>
+                Already have an account? <Link to={'/login'}>Sign in</Link>
             </p>
         </Container>
     )
