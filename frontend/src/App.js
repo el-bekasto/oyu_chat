@@ -9,6 +9,8 @@ import PrivateRoute from "./hocs/PrivateRoute";
 import {useEffect, useState} from "react";
 import {checkAuthentication} from "./actions/auth";
 import {connect} from "react-redux";
+import {Oval} from "react-loader-spinner";
+import './styles/App.css'
 
 function App({ checkAuthentication }) {
     const [checkingAuthentication, setCheckingAuthentication] = useState(true);
@@ -22,7 +24,7 @@ function App({ checkAuthentication }) {
     }, []);
 
     if (checkingAuthentication) {
-        return (<div>pls wait</div>);
+        return (<Oval color={'blue'} secondaryColor={'white'}/>);
     }
 
   return (
