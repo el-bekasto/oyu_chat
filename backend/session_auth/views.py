@@ -67,14 +67,13 @@ class LogoutView(APIView):
             return Response({'error': f'Something went wrong! {e}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@method_decorator(csrf_protect, name='dispatch')
 class CheckAuthenticatedView(APIView):
     permission_classes = (AllowAny, )
 
     def get(self, request):
         if request.user.is_authenticated:
-            return Response({'ok': 'You are authenticated!'}, status=status.HTTP_200_OK)
-        return Response({'ok': 'You are not authenticated!'}, status=status.HTTP_200_OK)
+            return Response({'authenticated': True}, status=status.HTTP_200_OK)
+        return Response({'authenticated': False}, status=status.HTTP_200_OK)
 
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
