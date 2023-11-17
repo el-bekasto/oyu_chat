@@ -7,16 +7,12 @@ import {Routes, Route, BrowserRouter} from "react-router-dom";
 import ChatList from "../components/ChatList";
 import Register from "../components/Register";
 
-function Layout ({ isAuthenticated, logout, children }) {
+function Layout ({ isAuthenticated, children }) {
     return (
-        <BrowserRouter>
+        <div>
             {isAuthenticated ? <NavbarComponent/> : null}
-            <Routes>
-                <Route path={"*"} element={ isAuthenticated ? <ChatList/> : <Login/> }/>
-                <Route path={"/login"} element={ <Login/> }/>
-                <Route path={'/register'} element={ <Register/> }/>
-            </Routes>
-        </BrowserRouter>
+            {children}
+        </div>
     )
 }
 
