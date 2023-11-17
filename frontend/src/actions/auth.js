@@ -1,6 +1,14 @@
 import Cookies from 'js-cookie';
 import axios from "axios";
-import {REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL} from "./types";
+import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL,
+    AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS
+} from "./types";
 
 
 export const login = (username, password) => async dispatch => {
@@ -108,6 +116,38 @@ export const register = (username, password, re_password) => async dispatch => {
     } catch (error) {
         dispatch({
             type: REGISTER_FAIL
+        });
+    }
+}
+
+export const checkAuthentication = () => async dispatch => {
+    const config = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRFToken': Cookies.get('csrftoken')
+        },
+        xsrfCookieName: 'csrftoken',
+        xsrfHeaderName: 'X-CSRFTOKEN',
+        withCredentials: true
+    };
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/sessionAuth/authenticated/`, config);
+
+        console.log(res.data.authenticated);
+        if (res.data.authenticated && res.data.authenticated === true) {
+            dispatch({
+                type: AUTHENTICATED_SUCCESS
+            });
+            console.log('authenticated!!')
+        } else {
+            dispatch({
+                type: AUTHENTICATED_FAIL
+            });
+        }
+    } catch (err) {
+        dispatch({
+            type: AUTHENTICATED_FAIL
         });
     }
 }

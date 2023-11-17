@@ -1,18 +1,13 @@
-import NavbarComponent from '../components/Navbar'
-import {Fragment} from "react";
+import NavbarComponent from '../components/Navbar';
 import {connect} from "react-redux";
-import {logout} from "../actions/auth";
-import Login from "../components/Login";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
-import ChatList from "../components/ChatList";
-import Register from "../components/Register";
+import {Fragment} from "react";
 
 function Layout ({ isAuthenticated, children }) {
     return (
-        <div>
+        <Fragment>
             {isAuthenticated ? <NavbarComponent/> : null}
             {children}
-        </div>
+        </Fragment>
     )
 }
 
@@ -20,4 +15,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { logout })(Layout);
+export default connect(mapStateToProps, {})(Layout);

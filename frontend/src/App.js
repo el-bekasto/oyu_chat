@@ -6,8 +6,25 @@ import ChatList from "./components/ChatList";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import PrivateRoute from "./hocs/PrivateRoute";
+import {useEffect, useState} from "react";
+import {checkAuthentication} from "./actions/auth";
+import {connect} from "react-redux";
 
-function App() {
+function App({ checkAuthentication }) {
+    const [checkingAuthentication, setCheckingAuthentication] = useState(true);
+
+    useEffect(() => {
+        const check = async () => {
+            await checkAuthentication();
+        }
+        check();
+        setCheckingAuthentication(false);
+    }, []);
+
+    if (checkingAuthentication) {
+        return (<div>pls wait</div>);
+    }
+
   return (
       <BrowserRouter>
         <Layout>
@@ -28,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, {checkAuthentication})(App);
