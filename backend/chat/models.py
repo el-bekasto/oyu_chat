@@ -28,6 +28,7 @@ class Chat(models.Model):
         choices=CHAT_TYPE_CHOICES,
         default=PRIVATE
     )
+    avatar = models.FileField(upload_to='avatars/%Y/%m/%d', blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -62,7 +63,7 @@ class Message(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
     text = models.TextField()
-    attachment = models.FileField(upload_to='uploads/%Y/%m/%d', blank=True)
+    attachment = models.FileField(upload_to='attachments/%Y/%m/%d', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     reply_to = models.ForeignKey('self', on_delete=models.PROTECT, blank=True)
