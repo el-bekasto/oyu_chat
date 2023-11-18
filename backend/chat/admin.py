@@ -11,6 +11,11 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ['pk', 'author', 'text', 'created_at']
 
 
+class ParticipantAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'user', 'participant_type']
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Chat, ChatAdmin)
 admin.site.register(Message, MessageAdmin)
+admin.site.register(Participant, ParticipantAdmin)

@@ -14,6 +14,27 @@ class User(AbstractUser):
         return f'<chatUser {self.username}>'
 
 
+class Chat(models.Model):
+    PRIVATE = 'private'
+    GROUP = 'group'
+    CHAT_TYPE_CHOICES = [
+        (PRIVATE, 'Private'),
+        (GROUP, 'Group')
+    ]
+    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, blank=True)
+    description = models.CharField(default=None, blank=True)
+    chat_type = models.CharField(
+        choices=CHAT_TYPE_CHOICES,
+        default=PRIVATE
+    )
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'<Chat {self.name}>'
+
+
 class Participant(models.Model):
     MEMBER = 'member'
     OWNER = 'owner'
@@ -31,25 +52,10 @@ class Participant(models.Model):
     ]
     participant_type = models.CharField(choices=PARTICIPANT_TYPE_CHOICES, default=MEMBER)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
 
-
-class Chat(models.Model):
-    PRIVATE = 'private'
-    GROUP = 'group'
-    CHAT_TYPE_CHOICES = [
-        (PRIVATE, 'Private'),
-        (GROUP, 'Group')
-    ]
-    name = models.CharField(max_length=100)
-    username = models.CharField(max_length=100)
-    description = models.CharField(default=None)
-    chat_type = models.CharField(
-        choices=CHAT_TYPE_CHOICES,
-        default=PRIVATE
-    )
-    participants = models.ManyToManyField(Participant)
-    updated_at = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'<Participant {self.user.username}>'
 
 
 class Message(models.Model):

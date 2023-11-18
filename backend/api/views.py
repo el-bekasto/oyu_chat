@@ -8,11 +8,10 @@ from chat.models import Chat
 
 
 class ListChats(ListAPIView):
-    serializer_class = DialogsSerializer
-
     def get(self, request: Request, *args, **kwargs):
-        result = DialogsSerializer(
+        result = ChatsSerializer(
             Chat.objects.filter(participants__user_id=request.user.pk),
-            many=True).data
+            many=True
+        ).data
         return Response(result)
 
