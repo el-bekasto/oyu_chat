@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import axios from "axios";
+import {CHAT_FETCH_FAIL, CHATS_FETCH_SUCCESS, CHATS_FETCHED} from "./types";
 
 export const getChats = () => async dispatch => {
     const config = {
@@ -15,8 +16,20 @@ export const getChats = () => async dispatch => {
 
     try {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/getChats`, config);
-        console.log(res);
-    } catch (err) {
 
+        if (res.status === 200) {
+            dispatch({
+                type: CHATS_FETCH_SUCCESS,
+                payload: res.data
+            });
+        } else {
+            dispatch({
+                type: CHAT_FETCH_FAIL
+            });
+        }
+    } catch (err) {
+        dispatch({
+            type: CHAT_FETCH_FAIL
+        });
     }
 }

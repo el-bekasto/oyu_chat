@@ -1,6 +1,6 @@
 import NavbarComponent from '../components/Navbar';
 import {connect} from "react-redux";
-import {Fragment} from "react";
+import {Fragment, useEffect, useState} from "react";
 
 function Layout ({ isAuthenticated, children }) {
     return (

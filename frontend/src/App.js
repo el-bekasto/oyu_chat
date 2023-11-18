@@ -19,7 +19,9 @@ function App({ checkAuthentication }) {
         const check = async () => {
             await checkAuthentication();
         }
+        console.log('not checked yet')
         check();
+        console.log('now checked')
         setCheckingAuthentication(false);
     }, []);
 

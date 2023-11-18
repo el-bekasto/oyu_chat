@@ -134,12 +134,10 @@ export const checkAuthentication = () => async dispatch => {
     try {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/sessionAuth/authenticated/`, config);
 
-        console.log(res.data.authenticated);
         if (res.data.authenticated && res.data.authenticated === true) {
             dispatch({
                 type: AUTHENTICATED_SUCCESS
             });
-            console.log('authenticated!!')
         } else {
             dispatch({
                 type: AUTHENTICATED_FAIL
