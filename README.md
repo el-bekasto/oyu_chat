@@ -26,3 +26,8 @@ Features:
 - SOLID, KISS, DRY principles
 - Custom registration and authorization process
 - Websockets for realtime chatting
+
+
+## Screenshots
+<img width="960" alt="image" src="https://github.com/el-bekasto/oyu_chat/assets/57838936/e4fcef58-eec4-403b-9159-37fdeb3f78ba">
+<img width="960" alt="image" src="https://github.com/el-bekasto/oyu_chat/assets/57838936/1e556510-2bba-47fd-a0be-11661f5d06e9">
