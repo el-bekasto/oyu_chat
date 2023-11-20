@@ -9,7 +9,7 @@ from chat.models import Chat, Participant
 
 class ListChats(ListAPIView):
     def get(self, request: Request, *args, **kwargs):
-        user_chats = [p.chat.pk for p in Participant.objects.filter(
+        user_chats = [p.chat.pk for p in Participant.objects.select_related('chat').filter(
             user_id=request.user.pk,
             participant_type__in=[Participant.MEMBER, Participant.OWNER, Participant.ADMIN]
         )]
