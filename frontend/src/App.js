@@ -11,6 +11,7 @@ import {checkAuthentication} from "./actions/auth";
 import {connect} from "react-redux";
 import {Oval} from "react-loader-spinner";
 import './styles/App.css'
+import Chat from "./components/Chat";
 
 function App({ checkAuthentication }) {
     const [checkingAuthentication, setCheckingAuthentication] = useState(true);
@@ -19,9 +20,7 @@ function App({ checkAuthentication }) {
         const check = async () => {
             await checkAuthentication();
         }
-        console.log('not checked yet')
         check();
-        console.log('now checked')
         setCheckingAuthentication(false);
     }, []);
 
@@ -38,6 +37,14 @@ function App({ checkAuthentication }) {
                   element={
                     <PrivateRoute>
                         <ChatList/>
+                    </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={'/chat/:id'}
+                  element={
+                    <PrivateRoute>
+                        <Chat/>
                     </PrivateRoute>
                   }
               />

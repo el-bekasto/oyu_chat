@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
-import Chat from "./Chat";
 import {getChats} from "../actions/chats";
 import {useEffect, useState} from "react";
 import {Oval} from "react-loader-spinner";
+import ChatListChat from "./ChatListChat";
 
 function ChatList ({ chats, getChats }) {
     useEffect(() => {
@@ -21,7 +21,7 @@ function ChatList ({ chats, getChats }) {
     return (
         <div>
             {chats.map((x) =>
-                <Chat chat={x}/>
+                <ChatListChat chat={x}/>
             )}
         </div>
     )
