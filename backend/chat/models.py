@@ -52,8 +52,8 @@ class Participant(models.Model):
         (BANNED, 'Banned')
     ]
     participant_type = models.CharField(choices=PARTICIPANT_TYPE_CHOICES, default=MEMBER)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='my_participants')
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='participants')
 
     def __str__(self):
         return f'<Participant {self.user.username}>'
@@ -61,9 +61,9 @@ class Participant(models.Model):
 
 class Message(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
     text = models.TextField()
     attachment = models.FileField(upload_to='attachments/%Y/%m/%d', blank=True)
+    reply_to = models.ForeignKey('self', on_delete=models.PROTECT, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    reply_to = models.ForeignKey('self', on_delete=models.PROTECT, blank=True)
