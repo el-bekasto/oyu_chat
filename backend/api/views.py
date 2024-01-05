@@ -9,6 +9,9 @@ from chat.models import Chat, Participant
 
 
 class ListChatsView(ListAPIView):
+    """
+    Получить список чатов пользователя
+    """
     serializer_class = ChatListChatSerializer
 
     def get_queryset(self):
@@ -20,6 +23,9 @@ class ListChatsView(ListAPIView):
 
 
 class GetChatView(RetrieveAPIView):
+    """
+    Получить один чат
+    """
     serializer_class = ChatListChatSerializer
 
     def get_object(self):
@@ -27,6 +33,9 @@ class GetChatView(RetrieveAPIView):
 
 
 class ChatMessagesView(ListAPIView):
+    """
+    Получить сообщения конкретного чата
+    """
     serializer_class = MessagesSerializer
 
     def get_queryset(self):
