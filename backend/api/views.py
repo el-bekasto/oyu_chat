@@ -2,12 +2,13 @@ from rest_framework import authentication, permissions
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.exceptions import NotFound
 
 from .serializers import *
 from chat.models import Chat, Participant
 
 
-class ListChats(ListAPIView):
+class ListChatsView(ListAPIView):
     serializer_class = ChatListChatSerializer
 
     def get_queryset(self):
@@ -18,9 +19,16 @@ class ListChats(ListAPIView):
         return Chat.objects.filter(id__in=user_chats)
 
 
-class GetChat(RetrieveAPIView):
-    permission_classes = (permissions.AllowAny,)
+class GetChatView(RetrieveAPIView):
     serializer_class = ChatListChatSerializer
 
     def get_object(self):
         return Chat.objects.get(id=int(self.kwargs['chat_id']))
+
+
+class ChatMessagesView(ListAPIView):
+    serializer_class = MessagesSerializer
+
+    def get_queryset(self):
+        chat_id = int(self.kwargs['chat_id'])
+        return Message.objects.filter(chat_id=chat_id, chat__participants__user_id=self.request.user.pk)
