@@ -15,7 +15,7 @@ export const getChats = () => async dispatch => {
     };
 
     try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/getChats`, config);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/chats`, config);
 
         if (res.status === 200) {
             dispatch({

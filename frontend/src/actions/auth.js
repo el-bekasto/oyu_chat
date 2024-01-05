@@ -26,7 +26,7 @@ export const login = (username, password) => async dispatch => {
     const body = JSON.stringify({ username, password });
     try {
         const res = await axios.post(
-            `${process.env.REACT_APP_API_URL}/sessionAuth/login/`,
+            `${process.env.REACT_APP_API_URL}/auth/login/`,
             body,
             config
         );
@@ -62,7 +62,7 @@ export const logout = () => async dispatch => {
 
     try {
         const res = await axios.post(
-            `${process.env.REACT_APP_API_URL}/sessionAuth/logout/`,
+            `${process.env.REACT_APP_API_URL}/auth/logout/`,
             null,
             config
         );
@@ -99,7 +99,7 @@ export const register = (username, password, re_password) => async dispatch => {
 
     try {
         const res = await axios.post(
-            `${process.env.REACT_APP_API_URL}/sessionAuth/register/`,
+            `${process.env.REACT_APP_API_URL}/auth/register/`,
             body,
             config
         );
@@ -132,7 +132,7 @@ export const checkAuthentication = () => async dispatch => {
         withCredentials: true
     };
     try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/sessionAuth/authenticated/`, config);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/authenticated/`, config);
 
         if (res.data.authenticated && res.data.authenticated === true) {
             dispatch({

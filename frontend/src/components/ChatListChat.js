@@ -7,7 +7,6 @@ import {Navigate, useNavigate} from "react-router-dom";
 export default function ChatListChat ({chat}) {
     const navigate = useNavigate();
     const openChat = () => {
-        console.log('here i am')
         navigate(`/chat/${chat.id}`)
     }
 
