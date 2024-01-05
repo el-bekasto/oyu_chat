@@ -64,6 +64,6 @@ class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
     text = models.TextField()
     attachment = models.FileField(upload_to='attachments/%Y/%m/%d', blank=True)
-    reply_to = models.ForeignKey('self', on_delete=models.PROTECT, blank=True)
+    reply_to = models.ForeignKey('self', on_delete=models.PROTECT, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
