@@ -1,6 +1,10 @@
 import Cookies from "js-cookie";
 import axios from "axios";
-import {CHAT_FETCH_FAIL, CHATS_FETCH_SUCCESS, CHATS_FETCHED} from "./types";
+import {
+    CHAT_FETCH_FAIL,
+    CHATS_FETCH_SUCCESS,
+} from "./types";
+
 
 export const getChats = () => async dispatch => {
     const config = {
