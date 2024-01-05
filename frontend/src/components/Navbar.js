@@ -11,7 +11,7 @@ import {logout} from "../actions/auth";
 function NavbarComponent ({logout}) {
     return (
         <Row>
-            <Col lg={2}>
+            <Col lg={1}>
                 <Navbar key={false} expand={false} collapseOnSelect>
                     <Container fluid>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`}/>
