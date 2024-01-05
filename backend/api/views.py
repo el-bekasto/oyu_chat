@@ -8,16 +8,14 @@ from chat.models import Chat, Participant
 
 
 class ListChats(ListAPIView):
-    def get(self, request: Request, *args, **kwargs):
+    serializer_class = ChatListChatSerializer
+
+    def get_queryset(self):
         user_chats = [p.chat.pk for p in Participant.objects.select_related('chat').filter(
-            user_id=request.user.pk,
+            user_id=self.request.user.pk,
             participant_type__in=[Participant.MEMBER, Participant.OWNER, Participant.ADMIN]
         )]
-        result = ChatListChatSerializer(
-            Chat.objects.filter(id__in=user_chats),
-            many=True
-        ).data
-        return Response(result)
+        return Chat.objects.filter(id__in=user_chats)
 
 
 class GetChat(RetrieveAPIView):
